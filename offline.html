@@ -3,9 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <title>Offline - Study Room</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #202124;
+        }
+        .offline-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        .offline-message {
+            max-width: 600px;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+        .offline-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: calc(var(--spacing-unit) * 2);
+            width: 100%;
+            max-width: 800px;
+        }
+        .offline-feature {
+            padding: calc(var(--spacing-unit) * 2);
+            background: var(--background-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+        }
+        h1 {
+            color: #4285f4;
+            margin-bottom: 16px;
+        }
+        p {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+        .retry-button {
+            display: inline-block;
+            background-color: #4285f4;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 24px;
+            border: none;
+            cursor: pointer;
+        }
+        .retry-button:hover {
+            background-color: #3367d6;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="offline-container">
+        <div class="offline-icon">📡</div>
+        <h1>You're Offline</h1>
+        <p>Sorry, you need an internet connection to access the Study Room.</p>
+        <p>Please check your connection and try again.</p>
+        <button class="retry-button" onclick="window.location.reload()">Retry</button>
+    </div>
+    <script>
+        // Check connection status periodically
+        setInterval(() => {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }, 5000);
+    </script>
 </body>
 </html>
